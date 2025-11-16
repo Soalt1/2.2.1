@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -80,5 +81,36 @@ public class User {
 
     public void setCar(Car car) {
         this.car = car;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+
+        if (id != null && user.id != null) {
+            return Objects.equals(id, user.id);
+        }
+
+
+        return Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(car, user.car);
+    }
+
+    @Override
+    public int hashCode() {
+
+        if (id != null) {
+            return Objects.hash(id);
+        }
+
+
+        return Objects.hash(firstName, lastName, email, car);
     }
 }

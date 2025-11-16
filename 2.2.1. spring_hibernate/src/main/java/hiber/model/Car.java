@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "cars")
@@ -64,6 +65,34 @@ public class Car {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Car car = (Car) o;
+
+
+        if (id != null && car.id != null) {
+            return Objects.equals(id, car.id);
+        }
+
+
+        return series == car.series &&
+                Objects.equals(model, car.model);
+    }
+
+    @Override
+    public int hashCode() {
+
+        if (id != null) {
+            return Objects.hash(id);
+        }
+
+
+        return Objects.hash(model, series);
     }
 }
 
