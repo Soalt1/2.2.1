@@ -19,6 +19,13 @@ public class UserDaoImp implements UserDao {
       sessionFactory.getCurrentSession().save(user);
    }
 
+//    @Override
+//    public void addAll(List<User> users) {
+//        for (User user : users) {
+//            sessionFactory.getCurrentSession().save(user);
+//        }
+//    }
+
     @Override
     @SuppressWarnings("unchecked")
     public List<User> listUsers() {
